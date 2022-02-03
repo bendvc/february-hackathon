@@ -1,0 +1,40 @@
+{
+  "name": "bfh-graphql-demo",
+  "version": "2.0.0-dev",
+  "license": "See license in LICENSE",
+  "private": true,
+  "dependencies": {
+    "commerce-sdk": "^2.7.0",
+    "cors": "^2.8.5",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.2.0",
+    "@graphql-tools/schema": "^8.3.1"
+  },
+  "devDependencies": {
+    "pwa-kit-build": "^2.0.0-dev",
+    "pwa-kit-runtime": "^2.0.0-dev"
+  },
+  "scripts": {
+    "test": "mrt test",
+    "format": "mrt format '\"**/*.{js,jsx}\"'",
+    "lint": "mrt lint '\"**/*.{js,jsx}\"'",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "mrt start",
+    "build": "mrt build",
+    "push": "mrt push",
+    "save-credentials": "mrt save-credentials"
+  },
+  "mobify": {
+    "ssrEnabled": true,
+    "ssrParameters": {
+      "ssrFunctionNodeVersion": "14.x"
+    },
+    "ssrOnly": [
+      "ssr.js",
+      "node_modules/**/*.*"
+    ],
+    "ssrShared": [
+      "intentionally-does-not-exist"
+    ]
+  }
+}
