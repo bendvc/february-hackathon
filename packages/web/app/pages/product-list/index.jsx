@@ -14,6 +14,7 @@ import {Helmet} from 'react-helmet'
 import ApolloClient from 'apollo-boost'
 import gql from 'graphql-tag'
 import fetch from 'cross-fetch'
+import {getAppOrigin} from 'pwa-kit-react-sdk/utils/url'
 
 const IS_REMOTE = typeof process !== 'undefined'
 
@@ -588,7 +589,7 @@ ProductList.getProps = async ({res, params, location, api}) => {
     //     ? 'https://b2c-graphql-server-production.mobify-storefront.com/graphql'
     //     : 'http://localhost:4000/graphql'
 
-    const uri = '/mobify/proxy/gql/graphql'
+    const uri = `${getAppOrigin()}/mobify/proxy/gql/graphql`
 
     const client = new ApolloClient({
         uri: uri,
@@ -607,7 +608,7 @@ ProductList.getProps = async ({res, params, location, api}) => {
             name
           }
         }
-        productSearch(options: {parameters: {${searchParams.q ? 'q:"' + searchParams.q + '",': ''} limit: ${searchParams.limit || 25}, refine: "${searchParams.refine.join('&')}"}}, includeProducts: false) {
+        productSearch(options: {parameters: {${searchParams.q ? 'q:"' + searchParams.q + '",': ''} limit: ${searchParams.limit || 25}, refine: "${searchParams.refine.join('&')}", sort: "${searchParams.sort || 'best-matches'}"}}, includeProducts: false) {
             hits {
               hitType
               image {
